@@ -2,13 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `codesing.su`,
     author: {
-      name: `Sergei Ivanov`,
+      name: `sergeiivanov`,
       summary: `who lives and works in Saint Petersburg building useful things.`,
-    },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
-    social: {
-      twitter: ``,
     },
   },
   plugins: [

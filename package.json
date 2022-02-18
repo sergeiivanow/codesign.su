@@ -3,7 +3,10 @@
   "private": false,
   "description": "A starter for a blog powered by Gatsby and Markdown",
   "version": "0.1.0",
-  "author": "Sergei ivanov <contact@sergeiivanov.ru>",
+  "author": "Sergei Ivanov <contact@sergeiivanov.ru>",
+  "bugs": {
+    "url": "https://github.com/sergeiivanow/codesign.su/issues"
+  },
   "dependencies": {
     "gatsby": "^4.7.2",
     "gatsby-plugin-feed": "^4.7.0",
@@ -32,10 +35,8 @@
   "devDependencies": {
     "prettier": "^2.5.1"
   },
-  "keywords": [
-    "code"
-  ],
-  "main": "n/a",
+  "homepage": "https://codesign.su",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"

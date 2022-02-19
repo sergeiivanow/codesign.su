@@ -15,24 +15,7 @@ const BlogIndex = ({ data, location }) => {
   if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
-        <Seo title="Home" />
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <StaticImage
-            className="avatar"
-            layout="fixed"
-            formats={["auto", "webp", "avif"]}
-            src="../images/avatar.png"
-            width={300}
-            height={300}
-            quality={95}
-            alt="Home picture"
-          />
-        </div>
+        <Seo title="About" />
       </Layout>
     )
   }

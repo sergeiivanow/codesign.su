@@ -1,13 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `codesing.su`,
+    title: `codesign.su`,
     author: {
       name: `sergeiivanov`,
       summary: `who lives and works in Saint Petersburg building useful things.`,
     },
   },
   plugins: [
-    // `gatsby-plugin-image`,
+    `gatsby-plugin-image`,
     // {
     //   resolve: `gatsby-source-filesystem`,
     //   options: {
@@ -116,7 +116,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/avatar.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-react-helmet`,

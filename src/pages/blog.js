@@ -1,100 +1,94 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
+import { Link } from "gatsby"
+import { getCurrentLangKey } from "ptz-i18n"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import { getCurrentLangKey } from "ptz-i18n"
 
 const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
-  const url = location.pathname
-  const { langs, defaultLangKey } = data.site.siteMetadata.languages;
-  const langKey = getCurrentLangKey(langs, defaultLangKey, url)
-  console.warn(location.pathname)
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title="All posts" />
-        <Bio location={location} />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
-  }
-
   return (
-    <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
-      <Bio location={location} />
-      <ol style={{ listStyle: `none` }}>
-        {posts
-          .filter(post => post.fields.langKey === langKey)
-          .map(post => {
-            const title = post.frontmatter.title || post.fields.slug
-
-            return (
-              <li key={post.fields.slug}>
-                <article
-                  className="post-list-item"
-                  itemScope
-                  itemType="http://schema.org/Article"
-                >
-                  <header>
-                    <h2>
-                      <Link to={post.fields.slug} itemProp="url">
-                        <span itemProp="headline">{title}</span>
-                      </Link>
-                    </h2>
-                    <small>{post.frontmatter.date}</small>
-                  </header>
-                  <section>
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: post.frontmatter.description || post.excerpt,
-                      }}
-                      itemProp="description"
-                    />
-                  </section>
-                </article>
-              </li>
-            )
-          })}
-      </ol>
-    </Layout>
+    <StaticQuery
+      query={graphql`
+        query {
+          site {
+            siteMetadata {
+              title
+              languages {
+                defaultLangKey
+                langs
+              }
+            }
+          }
+          allMarkdownRemark(
+            sort: { fields: [frontmatter___date], order: DESC }
+          ) {
+            nodes {
+              excerpt
+              fields {
+                slug
+                langKey
+              }
+              frontmatter {
+                date(formatString: "MMMM DD, YYYY", locale: "ru")
+                title
+                description
+              }
+            }
+          }
+        }
+      `}
+      render={data => {
+        const siteTitle = data.site.siteMetadata?.title || `Title`
+        const posts = data.allMarkdownRemark.nodes
+        const url = location.pathname
+        const { langs, defaultLangKey } = data.site.siteMetadata.languages
+        const langKey = getCurrentLangKey(langs, defaultLangKey, url)
+        return (
+          <Layout location={location} title={siteTitle}>
+            <Seo title="All posts" />
+            <Bio location={location} />
+            <ol style={{ listStyle: `none` }}>
+              {posts
+                .filter(post => post.fields.langKey === langKey)
+                .map(post => {
+                  const title = post.frontmatter.title || post.fields.slug
+  
+                  return (
+                    <li key={post.fields.slug}>
+                      <article
+                        className="post-list-item"
+                        itemScope
+                        itemType="http://schema.org/Article"
+                      >
+                        <header>
+                          <h2>
+                            <Link to={post.fields.slug} itemProp="url">
+                              <span itemProp="headline">{title}</span>
+                            </Link>
+                          </h2>
+                          <small>{post.frontmatter.date}</small>
+                        </header>
+                        <section>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                post.frontmatter.description || post.excerpt,
+                            }}
+                            itemProp="description"
+                          />
+                        </section>
+                      </article>
+                    </li>
+                  )
+                })}
+            </ol>
+          </Layout>
+        )
+      }}
+    />
   )
 }
 
 export default BlogIndex
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        languages {
-          defaultLangKey
-          langs
-        }
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
-          slug
-          langKey
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          description
-        }
-      }
-    }
-  }
-`

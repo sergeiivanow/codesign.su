@@ -114,6 +114,7 @@
 }
 
 html {
+  height: 100%;
   line-height: var(--lineHeight-normal);
   font-size: var(--fontSize-root);
   -webkit-font-smoothing: antialiased;
@@ -121,10 +122,11 @@ html {
 }
 
 body {
+  height: 100%;
   font-family: var(--font-body);
   font-size: var(--fontSize-1);
   color: var(--color-text-primary);
-  background-color: var(--color-bg-primary)
+  background-color: var(--color-bg-primary);
 }
 
 footer {
@@ -282,6 +284,9 @@ a {
 /* Custom classes */
 
 .global-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: var(--spacing-0) auto;
   max-width: var(--maxWidth-wrapper);
   padding: var(--spacing-10) var(--spacing-5);

@@ -75,11 +75,13 @@ const Layout = ({ location, title, children }) => {
                   <ThemeSwitcher theme={theme} setTheme={switchTheme} />
                 </div>
               </header>
-              <main>{children}</main>
+              <main style={{ flex: 1 }}>{children}</main>
               <footer>
                 © {new Date().getFullYear()}, <FormattedMessage id="made" />{" "}
                 <Link href={sourceUrl} className="link-hover" target="_blank">
-                  {'('}<FormattedMessage id="source" />{')'}
+                  {"("}
+                  <FormattedMessage id="source" />
+                  {")"}
                 </Link>
               </footer>
             </div>

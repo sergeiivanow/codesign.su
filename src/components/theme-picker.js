@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import  { DarkModeToggle } from "react-dark-mode-toggle-2"
+import { DarkModeSwitch } from "react-toggle-dark-mode"
 
 const myThemes = [
   {
@@ -21,11 +21,11 @@ const ThemePicker = ({ theme, setTheme }) => {
   }
 
   return (
-    <DarkModeToggle
+    <DarkModeSwitch
+      sunColor="yellow"
+      checked={isDarkMode}
       onChange={onChange}
-      isDarkMode={isDarkMode}
-      size={80}
-      speed={100}
+      size={30}
     />
   )
 }

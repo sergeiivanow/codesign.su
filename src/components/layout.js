@@ -79,7 +79,7 @@ const Layout = ({ location, title, children }) => {
               <footer>
                 © {new Date().getFullYear()}, <FormattedMessage id="made" />{" "}
                 <Link href={sourceUrl} className="link-hover" target="_blank">
-                  <FormattedMessage id="source" />
+                  {'('}<FormattedMessage id="source" />{')'}
                 </Link>
               </footer>
             </div>

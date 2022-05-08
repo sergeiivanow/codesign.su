@@ -1,18 +1,18 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
+import { getCurrentLangKey } from "ptz-i18n"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import { getCurrentLangKey } from "ptz-i18n"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
   const url = location.pathname
-  const { langs, defaultLangKey } = data.site.siteMetadata.languages;
+  const { langs, defaultLangKey } = data.site.siteMetadata.languages
   const langKey = getCurrentLangKey(langs, defaultLangKey, url)
-  console.warn(location.pathname)
+
   if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>

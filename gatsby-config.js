@@ -1,20 +1,26 @@
+const lang = require('./src/lang');
+
 module.exports = {
   siteMetadata: {
     title: `codesign.su`,
     author: {
-      name: `sergeiivanov`,
-      summary: `who lives and works in Saint Petersburg building useful things.`,
+      name: `Sergei Ivanov`,
     },
+    sourceUrl: 'https://github.com/sergeiivanow/codesign.su',
+    email: 'mailto:to@codesign.su',
+    description: `Personal site.`,
+    siteUrl: `https://codesign.su`,
+    languages: lang, 
   },
   plugins: [
     `gatsby-plugin-image`,
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/content/blog`,
-    //     name: `blog`,
-    //   },
-    // },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/blog`,
+        name: `blog`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -116,12 +122,52 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/avatar.png`, // This path is relative to the root of the site.
+        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-react-helmet`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-theme-switcher',
+      options: {
+        defaultDarkTheme: 'theme-dark',
+        defaultLightTheme: 'theme-light',
+      }
+    },
+    {
+      resolve: `gatsby-plugin-typography`,
+      // options: {
+      //   pathToConfigModule: `src/utils/typography`,
+      // },
+    },
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options: {        
+        langKeyForNull: 'any',
+        langKeyDefault: lang.defaultLangKey,
+        useLangKeyLayout: false,
+        prefixDefault: false,
+        pagesPaths: [`${__dirname}/src/pages`, `${__dirname}/content/blog`],
+        markdownRemark: {
+          postPage: 'src/templates/blog-post.js',
+          query: `
+            {
+              allMarkdownRemark {
+                edges {
+                  node {
+                    fields {
+                      slug,
+                      langKey
+                    }
+                  }
+                }
+              }
+            }
+          `
+        },
+      },
+    },
   ],
 }

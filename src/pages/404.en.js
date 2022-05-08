@@ -1,22 +1,22 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const Index = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
+const NotFoundPage = ({ data, location }) => {
+  const siteTitle = data.site.siteMetadata.title
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="Home" />
-      <Bio location={location} />
+      <Seo title="404: Not Found" />
+      <h1>404: Not Found</h1>
+      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
     </Layout>
   )
 }
 
-export default Index
+export default NotFoundPage
 
 export const pageQuery = graphql`
   query {

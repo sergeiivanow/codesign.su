@@ -31,7 +31,7 @@ const BlogPostTemplate = ({ data, location }) => {
         />
         <hr />
         <footer>
-          <Bio />
+          <Bio location={location} />
         </footer>
       </article>
       <nav className="blog-post-nav">
@@ -46,14 +46,14 @@ const BlogPostTemplate = ({ data, location }) => {
         >
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
+              <Link className="link-hover __right" to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
+              <Link className="link-hover __left" to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
               </Link>
             )}

@@ -6,20 +6,23 @@
  */
 
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import { FormattedMessage } from "react-intl"
+import { getCurrentLangKey } from "ptz-i18n"
 
-const Bio = () => {
+const Bio = ({ location }) => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       site {
         siteMetadata {
+          email
           author {
             name
-            summary
           }
-          social {
-            twitter
+          languages {
+            defaultLangKey
+            langs
           }
         }
       }
@@ -28,7 +31,16 @@ const Bio = () => {
 
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site.siteMetadata?.author
-  const social = data.site.siteMetadata?.social
+  const email = data.site.siteMetadata?.email
+
+  const url = location.pathname
+  const { langs, defaultLangKey } = data.site.siteMetadata.languages
+  const langKey = getCurrentLangKey(langs, defaultLangKey, url)
+  const rootPath = `${__PATH_PREFIX__}/`
+  const isShowMyBlog =
+    location.pathname === rootPath ||
+    location.pathname === `/${langKey}/` ||
+    !location.pathname.includes("blog")
 
   return (
     <div className="bio">
@@ -37,14 +49,27 @@ const Bio = () => {
         layout="fixed"
         formats={["auto", "webp", "avif"]}
         src="../images/profile-pic.png"
-        width={50}
-        height={50}
         quality={95}
+        transformOptions={{ fit: "cover" }}
+        placeholder="blurred"
         alt="Profile picture"
+        style={{ zIndex: -1 }}
       />
       {author?.name && (
         <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
+          <FormattedMessage id="about" />{" "}
+          {isShowMyBlog && (
+            <Link
+              to={langKey === "ru" ? `/blog` : `/${langKey}/blog/`}
+              className="link-hover"
+            >
+              <FormattedMessage id="myBlog" />
+            </Link>
+          )}
+          {' '}
+          <Link href={email} className="link-hover">
+            <FormattedMessage id="contact" />
+          </Link>
         </p>
       )}
     </div>

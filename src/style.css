@@ -1,5 +1,6 @@
 /* CSS Custom Properties Definitions */
 .theme-light {
+  --code-bg: #011627;
   --color-bg-primary: #98d3f5;
   --color-bg-primary-light: #E7FDFF;
   --color-bg-accent: #f5ed98; 
@@ -22,6 +23,7 @@
   }
 
 .theme-dark {
+  --code-bg: #131313;
   --color-bg-primary: #15202B;
   --color-bg-primary-light: #172D3F;
   --color-bg-accent: #1B91DA; 
@@ -417,4 +419,29 @@ a {
 
 .link-hover.__right:hover:after {
   left: auto;
+}
+
+.gatsby-code-button-container {
+  height: 0;
+}
+
+.gatsby-code-button {
+  margin-top: -16px;
+  margin-right: -8px;
+}
+
+.gatsby-code-button > svg > path {
+  fill: rgba(255, 255, 255, 0.65);
+}
+
+.gatsby-code-button > svg:hover > path {
+  fill: rgba(255, 255, 255, 1);
+}
+
+.gatsby-code-button > svg:active > path {
+  fill: rgba(255, 255, 255, 0.65);
+}
+
+.gatsby-code-button:after {
+  display: none !important;
 }

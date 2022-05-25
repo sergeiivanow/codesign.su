@@ -7,19 +7,19 @@ date: "2022-05-25T22:36:00Z"
 
 Хочу рассказать о шикарном способе создать стартер своей мечты
 
-## Всего в пять шагов
+### Всего в пять шагов
 
 1.  Создание проекта обычным способом
 ```js
-     npx react-native init AwesomeProject
+ npx react-native init AwesomeProject
 ```
 > ВАЖНО: регистр букв имеет значение, нужно помнить об этом настраивая конфигурацию в дальнейшем
 
 Далее можно интегрировать разнообразные модули и создать структуру, которую планируется использовать при старте разработки нового проекта
 
-2. Изменение имени корневой директори созданного проекта на новое:  `template`
-   
-3. Создание репозитория; перенос директори с шаблоном и добавлени конфигурационных файлов
+1. Изменение имени корневой директори созданного проекта на новое:  `template`
+
+2. Создание репозитория; перенос директори с шаблоном и добавлени конфигурационных файлов
 
 Должна получиться такая структура:
 
@@ -39,21 +39,22 @@ console.log("This is post init script");
 
 ` template.config.js`
 ```js
-  // Имя заполнитель, которое будет заменено в package.json, index.json, android/, ios/ именем проекта
-  placeholderName: "AwesomeProject",
+ // Имя заполнитель, которое будет заменено
+ // в package.json, index.json, android/, ios/ именем проекта
+ placeholderName: "AwesomeProject",
 
-  // Дириктория с шаблоном
-  templateDir: "./template",
+ // Дириктория с шаблоном
+ templateDir: "./template",
 
-  // Путь к скрипту, который будет выполнен после
-  postInitScript: "./script.js"
+ // Путь к скрипту, который будет выполнен после
+ postInitScript: "./script.js"
 ```
 
 4. Пушим наш шаблон, например, на [GitHub](https://github.com)
 
 5. Можно использовать 
 ```js 
-npx react-native init MyApp --template https://github.com/YOUR_NAME/YOUR_REPO_NAME
+ npx react-native init MyApp --template https://github.com/YOUR_NAME/YOUR_REPO_NAME
 ```
 
 ### Для ознакомления

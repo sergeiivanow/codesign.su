@@ -1,6 +1,6 @@
 ---
-title: My First Post!
-date: "2020-05-07T23:46:37.121Z"
+title: How to quickly start a project to develop a React Native application
+date: "2022-05-25T22:36:00Z"
 ---
 
-Here will be my notes 
+So far only in Russian

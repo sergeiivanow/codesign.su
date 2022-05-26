@@ -13,7 +13,7 @@ date: "2022-05-25T22:36:00Z"
 ```js
  npx react-native init AwesomeProject
 ```
-> ВАЖНО: регистр букв имеет значение, нужно помнить об этом настраивая конфигурацию в дальнейшем
+> ВАЖНО: необходимо указывать имя проекта в Pascal case стиле, это имя будет заменено на имя проекта созданного при помощи шаблона 
 
 Далее можно интегрировать разнообразные модули и создать структуру, которую планируется использовать при старте разработки нового проекта
 
@@ -29,6 +29,7 @@ any-name-of-your-repo
  ┣ script.js
  ┗ template.config.js
 ```
+> Из `template` рекомендуется удалить `yarn.lock` и `ios/Podfile.lock`
 
 `script.js`
 ```js
@@ -39,6 +40,7 @@ console.log("This is post init script");
 
 ` template.config.js`
 ```js
+module.exports = {
  // Имя заполнитель, которое будет заменено
  // в package.json, index.json, android/, ios/ именем проекта
  placeholderName: "AwesomeProject",
@@ -48,6 +50,7 @@ console.log("This is post init script");
 
  // Путь к скрипту, который будет выполнен после
  postInitScript: "./script.js"
+};
 ```
 
 4. Пушим наш шаблон, например, на [GitHub](https://github.com)
